@@ -22,7 +22,12 @@ class RegistrationController extends \BaseController {
 	 */
 	public function store()
 	{
-		//return 'creating new user';
+		$user = User::create(
+			Input::only('username', 'email', 'password')
+		);
+
+		Auth::login($user);
+
 		return Redirect::home();
 	}
 
