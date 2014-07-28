@@ -1,7 +1,7 @@
 <?php
 
 Event::listen('Larabook.Registration.Events.UserRegistered', function($event) {
-	dd('sent email.');
+	//dd('sent email.');
 });
 
 Route::get('/', [
