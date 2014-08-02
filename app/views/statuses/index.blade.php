@@ -2,27 +2,32 @@
 
 @section('content')
 	
-	<h1>Post a Status</h1>
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
 
-	@include('layouts.partials.errors')
+			@include('layouts.partials.errors')
 
-	{{ Form::open(['route' => 'statuses_path']) }}
+			<div class="status-post">				
 
-		<div class="form-group">
-			{{ Form::label('body', 'Status:') }}
-			{{ Form::textarea('body', null, ['class' => 'form-control', 'required' => 'required']) }}
-		</div>
+				{{ Form::open(['route' => 'statuses_path']) }}
 
-		<div class="form-group">
-			{{ Form::submit('Post status', ['class' => 'btn btn-lg btn-primary'])}}
-		</div>
+					<div class="form-group">
+						{{ Form::textarea('body', null, ['class' => 'form-control', 'rows' => 3, 'required' => 'required', 'placeholder' => 'What\'s on your mind? ']) }}
+					</div>
 
-	{{ Form::close() }}	
+					<div class="form-group status-post-submit">
+						{{ Form::submit('Post status', ['class' => 'btn btn-xs btn-default'])}}
+					</div>
 
-	<h2>Statuses</h2>
+				{{ Form::close() }}	
+			
+			</div>
 
-	@foreach ($statuses as $status)
-		<article>{{ $status->body }}</article>
-	@endforeach
+			@foreach ($statuses as $status)
+				@include('statuses.partials.status')
+			@endforeach
+
+		</div>		
+	</div>
 
 @stop

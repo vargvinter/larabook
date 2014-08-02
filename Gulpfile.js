@@ -11,9 +11,9 @@ gulp.task('css', function() {
 		.pipe(gulp.dest('public/css'));
 });
 
-// gulp.task('watch', function() {
-// 	gulp.watch('app/assets/sass/**/*.scss', ['css']);
-// });
+gulp.task('watch', function() {
+	gulp.watch('app/assets/sass/**/*.scss', ['css']);
+});
 
-// gulp.task('default', ['watch']);
-gulp.task('default', ['css']);
+gulp.task('default', ['watch']);
+// gulp.task('default', ['css']);
