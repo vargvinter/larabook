@@ -5,8 +5,7 @@ use Laracasts\Presenter\Presenter;
 /**
 * 
 */
-class StatusPresenter extends Presenter
-{
+class StatusPresenter extends Presenter {
 
 	public function timeSincePublished()
 	{
