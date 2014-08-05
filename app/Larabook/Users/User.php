@@ -50,4 +50,9 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return $user;
 	}
 
+	public function is(User $user)
+	{
+		return $this->username == $user->username;
+	}
+
 }
