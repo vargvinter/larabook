@@ -1,6 +1,6 @@
 Larabook\Users\User:
   username: $string$integer
-  email: $string@example.com
+  email: $string$integer@example.com
   password: $string
   created_at: $date
   updated_at: $date
