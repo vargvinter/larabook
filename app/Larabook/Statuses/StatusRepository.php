@@ -14,6 +14,14 @@ class StatusRepository {
 		return $user->statuses()->with('user')->latest()->get();
 	}
 
+	public function getFeedForUser(User $user)
+	{
+		$userIds = $user->follows()->lists('followed_id');
+		$userIds[] = $user->id;
+
+		return Status::whereIn('user_id', $userIds)->latest()->get();
+	}
+
 	public function save(Status $status, $userId)
 	{
 		return User::find($userId)->statuses()->save($status);

@@ -41,6 +41,15 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return $this->hasMany('Larabook\Statuses\Status');
 	}
 
+	public function follows()
+	{
+		// return $this->belongsToMany(self::class, 'follows', 'follower_id', 'followed_id')->withTimestamps();
+
+		/** LUB */
+
+		return $this->belongsToMany('Larabook\Users\User', 'follows', 'follower_id', 'followed_id')->withTimestamps();
+	}
+
 	public static function register($username, $email, $password) 
 	{
 		$user = new static(compact('username', 'email', 'password'));
@@ -55,6 +64,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		if(is_null($user)) return false;
 		
 		return $this->username == $user->username;
+	}
+
+	public function isFollowedBy(User $otherUser)
+	{
+		$idsWhoOtherUserFollows = $otherUser->follows()->lists('followed_id');
+		return in_array($this->id, $idsWhoOtherUserFollows);
 	}
 
 }

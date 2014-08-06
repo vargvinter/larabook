@@ -1,12 +1,9 @@
 <?php
 
-use Laracasts\Commander\CommanderTrait;
 use Larabook\Registration\RegisterUserCommand;
 use Larabook\Forms\RegistrationForm;
 
 class RegistrationController extends \BaseController {
-
-	use CommanderTrait;
 
 	private $registrationForm;
 
