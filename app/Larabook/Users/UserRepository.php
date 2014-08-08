@@ -34,7 +34,12 @@ class UserRepository {
 
     public function follow($userIdToFollow, User $user)
     {
-    	return $user->follows()->attach($userIdToFollow);
+        return $user->followedUsers()->attach($userIdToFollow);
+    }
+
+    public function unfollow($userIdToUnfollow, User $user)
+    {
+    	return $user->followedUsers()->detach($userIdToUnfollow);
     }
 
 }

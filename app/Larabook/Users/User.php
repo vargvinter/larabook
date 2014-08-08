@@ -7,11 +7,12 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 use Laracasts\Commander\Events\EventGenerator;
 use Laracasts\Presenter\PresentableTrait;
 use Larabook\Registration\Events\UserRegistered;
+use Larabook\Users\FollowableTrait;
 use Eloquent, Hash;
 
 class User extends Eloquent implements UserInterface, RemindableInterface {
 
-	use UserTrait, RemindableTrait, EventGenerator, PresentableTrait;
+	use UserTrait, RemindableTrait, EventGenerator, PresentableTrait, FollowableTrait;
 
 	protected $fillable = ['username', 'email', 'password'];
 
@@ -41,15 +42,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return $this->hasMany('Larabook\Statuses\Status');
 	}
 
-	public function follows()
-	{
-		// return $this->belongsToMany(self::class, 'follows', 'follower_id', 'followed_id')->withTimestamps();
-
-		/** LUB */
-
-		return $this->belongsToMany('Larabook\Users\User', 'follows', 'follower_id', 'followed_id')->withTimestamps();
-	}
-
 	public static function register($username, $email, $password) 
 	{
 		$user = new static(compact('username', 'email', 'password'));
@@ -66,10 +58,5 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return $this->username == $user->username;
 	}
 
-	public function isFollowedBy(User $otherUser)
-	{
-		$idsWhoOtherUserFollows = $otherUser->follows()->lists('followed_id');
-		return in_array($this->id, $idsWhoOtherUserFollows);
-	}
 
 }

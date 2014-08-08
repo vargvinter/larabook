@@ -21,6 +21,7 @@ class FunctionalHelper extends \Codeception\Module {
 		$I->fillField('email', $email);
 		$I->fillField('password', $password);
 		$I->click('Sign In!');
+		
 	}
 
 	public function postAStatus($body)
