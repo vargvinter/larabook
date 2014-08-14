@@ -39,7 +39,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	public function statuses()
 	{
-		return $this->hasMany('Larabook\Statuses\Status');
+		return $this->hasMany('Larabook\Statuses\Status')->latest();
 	}
 
 	public static function register($username, $email, $password) 

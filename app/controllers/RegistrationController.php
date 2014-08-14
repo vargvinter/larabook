@@ -32,6 +32,8 @@ class RegistrationController extends \BaseController {
 	 */
 	public function store()
 	{
+		//$this->registrationForm->rules = ['test' => 'required'];
+		//dd($this->registrationForm->getValidationRules());
 		$this->registrationForm->validate(Input::all());
 
 		// extract(Input::only('username', 'email', 'password'));
